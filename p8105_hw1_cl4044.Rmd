@@ -1,0 +1,60 @@
+---
+title: "P8105 - Homework 1"
+author: "Chenxi Liu"
+date: 9/13/2020
+output: github_document
+---
+
+# Problem 1
+
+```{r load tidyverse libraray, message = FALSE}
+library(tidyverse)
+```
+
+
+Create a data frame
+```{r}
+problem1_df = tibble(
+   vec_numeric = rnorm(10),
+   vec_logical = vec_numeric > 0,
+   vec_char = c("My", "name", "is", "Chenxi", "I", "like", "doing", "data", "science", "peroid"), 
+   vec_factor = factor(c("lv1", "lv1", "lv3", "lv2", "lv1", "lv2", "lv3", "lv2", "lv3", "lv2"))
+)
+problem1_df
+```
+
+Try to take the mean of each variable in problem1_df
+```{r, warning = FALSE}
+mean(problem1_df[["vec_numeric"]])
+mean(problem1_df[["vec_logical"]])
+mean(problem1_df[["vec_char"]])
+mean(problem1_df[["vec_factor"]])
+```
+I got numeric result for the numeric and logical factors. I got NA for character and factor vectors since they are not numeric. 
+
+
+Apply the as.numeric function to the logical, character, and factor variables.
+```{r, eval = FALSE}
+as.numeric(problem1_df[["vec_char"]])
+as.numeric(problem1_df[["vec_logical"]])
+as.numeric(problem1_df[["vec_factor"]])
+
+mean(as.numeric(problem1_df[["vec_char"]]))
+mean(as.numeric(problem1_df[["vec_logical"]]))
+mean(as.numeric(problem1_df[["vec_factor"]]))
+```
+The mean for character vector is still NA. The mean for logical vector is still 0.6. However, each level of factor was intepreted as 1, 2 , 3. The mean of factor vector become 2.
+
+```{r, warning = FALSE}
+as.numeric(problem1_df[["vec_logical"]]) * problem1_df[["vec_numeric"]]
+as.factor(problem1_df[["vec_logical"]]) * problem1_df[["vec_numeric"]]
+as.numeric(as.factor(problem1_df[["vec_logical"]])) * problem1_df[["vec_numeric"]]
+```
+
+
+# Problem 2
+Load he penguins dataset
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
