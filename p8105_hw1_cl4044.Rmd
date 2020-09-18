@@ -63,7 +63,7 @@ mean(penguins$flipper_length_mm, na.rm = TRUE)
 This dataset has variables of species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex and year.
 It has 344 rows and 8 columns. The mean flipper length is 200.9mm. 
 
-```{r}
+```{r, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, shape = species, color = species)) + geom_point()
 ggsave("penguins_scatterplots.png")
 ```
